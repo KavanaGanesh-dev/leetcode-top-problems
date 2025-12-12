@@ -22,6 +22,7 @@ Values are in range [-10^5, 10^5]
 Must achieve O(1) time complexity for next() operation
 Must use O(k) space complexity'''
 
+
 # Insights from question:
 # array = [], sum = 0, window_size = k = 3
 # 1st iteration: next(1)->array = [1], sum = 1, avg = 1/1 = 1.0
@@ -30,6 +31,10 @@ Must use O(k) space complexity'''
 # 4th iteration: next(5) ->array = [1,10,3,5], sum = 19, however length of array > k, pop here to maintain k size, sum=sum-popelement, avg = 18/3 = 6.0
 # I am going to choose dque here: bcos of its simltaneously adding deleting feature - this gives benefits of O(1) - pop opertaion in the queue
 
+# Time Complexity:
+# I keep running sum: mathematical operation is O(1)
+# I use deque : any operation append/popleft() on this is O(1)
+# So therefore the operation is O(k) - k being the window size
 
 from collections import deque
 class Movingavg:
