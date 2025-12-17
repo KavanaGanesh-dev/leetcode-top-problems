@@ -21,9 +21,20 @@ Constraints:
 0 <= intervals.length <= 500
 0 <= intervals[i].start < intervals[i].end <= 1,000,000'''
 
+# Some insights about the problem!
+# 1. Question is a nested list: intervals = [[0,30], [5,10], [15,20]]
+# 2. But there is a class that has a interval object
+# 3. I create 2 lists - start and end which contains start and end list
+# 4. sort and apply the logic to chec if there is ovrelap
+# 5. if overlaps - an additional room is required; need to find the minimum rooms thats required
 
+# Analysing Complexity:
+# Space: we are creating 2 lists - O(n) + O(n) = O(n)
+# Time : we loop through the list to create start and end = O(n)
+    # sorting both the list = O(n logn) + O(nlogn) = O(nlogn)
+    # two ppointer approach - O(n) 
+    # TOTOL = O(n) + O(n) + O(logn) + O(logn) + O(n) = O(nlogn)
 
-# Definition of Interval:
 
 from typing import List
 
