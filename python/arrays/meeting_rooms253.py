@@ -44,35 +44,64 @@ class Interval(object):
         self.end = end
 
 
+# class Solution:
+#     def minMeetingRooms(self, intervals: List[Interval]) -> int:
+#         if not intervals:
+#             return 0
+        
+#         start = []
+#         end = []
+
+#         for interval in intervals:
+#             start.append(interval.start)
+#             end.append(interval.end)
+
+#         start.sort()
+#         end.sort()
+
+#         i, j = 0, 0
+#         rooms = 0
+#         max_rooms = 0
+
+#         while i < len(start):
+#             if start[i] < end[j]:
+#                 rooms += 1
+#                 max_rooms = max(rooms, max_rooms)
+#                 i += 1
+#             else:
+#                 rooms -= 1
+#                 j += 1
+#         return max_rooms
+    
+
+
 class Solution:
     def minMeetingRooms(self, intervals: List[Interval]) -> int:
-        if not intervals:
-            return 0
-        
-        start = []
-        end = []
+        start = sorted(interval.start for interval in intervals)
+        end = sorted(interval.end for interval in intervals)
 
-        for interval in intervals:
-            start.append(interval.start)
-            end.append(interval.end)
+        room_count = 0
+        next = 0
 
-        start.sort()
-        end.sort()
-
-        i, j = 0, 0
-        rooms = 0
-        max_rooms = 0
-
-        while i < len(start):
-            if start[i] < end[j]:
-                rooms += 1
-                max_rooms = max(rooms, max_rooms)
-                i += 1
+        for i in range(len(start)):
+            if start[i] < end[next]:
+                room_count = room_count + 1
             else:
-                rooms -= 1
-                j += 1
-        return max_rooms
-    
+                next = next + 1
+        return room_count
+        
+
+
+# Optimized time complexity solution
+# 1.create a start and an end array from tuple
+# 2.keep a counter to count the number of rooms
+# 3. iterate to move from len(start array)
+# 4. check if the start values are less than the end value: if yes, increment rooms
+# 5. if no then move the next pointer to next end
+
+# time: sorted and then traverse throuhg that array: O(nlogn)
+# space: create two array = O(n)
+
 
 intervals = [Interval(0, 30),Interval(5, 10),Interval(15, 20)]
 print(Solution().minMeetingRooms(intervals))
